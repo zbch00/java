@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="db_blog" schema="db_blog" type="MySQL - 5.5.5-10.4.24-MariaDB">
+   <tables>
+      <table catalog="db_blog" name="article" numRows="50" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_blog" column="article_id" foreignKey="FK_67F068BC7294869C" implied="false" onDeleteCascade="false" table="commentaire"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="titre" nullable="false" remarks="" size="200" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="contenu" nullable="false" remarks="" size="2147483647" type="LONGTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="created_at" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="slug" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="categorie_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_blog" column="id" foreignKey="FK_23A0E66BCF5E72D" implied="false" onDeleteCascade="false" table="categorie"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="publie" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="publi" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="IDX_23A0E66BCF5E72D" unique="false">
+            <column ascending="true" name="categorie_id"/>
+         </index>
+      </table>
+      <table catalog="db_blog" name="categorie" numRows="9" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_blog" column="categorie_id" foreignKey="FK_23A0E66BCF5E72D" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="titre" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="slug" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="db_blog" name="commentaire" numRows="50" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="article_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_blog" column="id" foreignKey="FK_67F068BC7294869C" implied="false" onDeleteCascade="false" table="article"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="utilisateurs_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_blog" column="id" foreignKey="FK_67F068BC1E969C5" implied="false" onDeleteCascade="false" table="utilisateur"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="contenu" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="created_at" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="IDX_67F068BC1E969C5" unique="false">
+            <column ascending="true" name="utilisateurs_id"/>
+         </index>
+         <index name="IDX_67F068BC7294869C" unique="false">
+            <column ascending="true" name="article_id"/>
+         </index>
+      </table>
+      <table catalog="db_blog" name="contact" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nom" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="prenom" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="adresse_email" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="sujet" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="description" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="db_blog" name="doctrine_migration_versions" numRows="7" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="version" nullable="false" remarks="" size="191" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="executed_at" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="execution_time" nullable="true" remarks="" size="10" type="INT" typeCode="4"/>
+         <primaryKey column="version" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="version"/>
+         </index>
+      </table>
+      <table catalog="db_blog" name="messenger_messages" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="BIGINT" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="body" nullable="false" remarks="" size="2147483647" type="LONGTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="headers" nullable="false" remarks="" size="2147483647" type="LONGTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="queue_name" nullable="false" remarks="" size="190" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="created_at" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="available_at" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="delivered_at" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="IDX_75EA56E016BA31DB" unique="false">
+            <column ascending="true" name="delivered_at"/>
+         </index>
+         <index name="IDX_75EA56E0E3BD61CE" unique="false">
+            <column ascending="true" name="available_at"/>
+         </index>
+         <index name="IDX_75EA56E0FB7336F0" unique="false">
+            <column ascending="true" name="queue_name"/>
+         </index>
+      </table>
+      <table catalog="db_blog" name="utilisateur" numRows="50" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="db_blog" column="utilisateurs_id" foreignKey="FK_67F068BC1E969C5" implied="false" onDeleteCascade="false" table="commentaire"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="prenom" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nom" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="pseudo" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+   </tables>
+</database>

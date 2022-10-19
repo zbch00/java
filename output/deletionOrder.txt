@@ -1,0 +1,7 @@
+messenger_messages
+doctrine_migration_versions
+contact
+commentaire
+article
+utilisateur
+categorie
